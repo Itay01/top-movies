@@ -32,6 +32,8 @@ class Movie(db.Model):
     ranking = db.Column(db.Integer, nullable=True)
     review = db.Column(db.String(250), nullable=True)
     img_url = db.Column(db.String(250), nullable=False)
+
+
 db.create_all()
 
 
@@ -52,7 +54,7 @@ def home():
     for i in range(len(all_movies)):
         all_movies[i].ranking = len(all_movies) - i
     db.session.commit()
-    return render_template("index.html", movies=all_movies)
+    return render_template("index.html", movies=all_movies, len_movies=len(all_movies))
 
 
 @app.route("/add", methods=["GET", "POST"])
